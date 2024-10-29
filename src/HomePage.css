@@ -1,0 +1,135 @@
+/* HomePage.css */
+
+/* General styling for the homepage */
+.home-page {
+  font-family: 'Montserrat', sans-serif; /* Updated font */
+}
+
+body {
+  margin: 0; /* Removes default body margin */
+  padding: 0; /* Removes default body padding */
+  box-sizing: border-box; /* Ensures consistent box sizing across elements */
+}
+
+/* Header section styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+  margin: 0; /* Ensures no margin below the header */
+  border-bottom: none; /* Ensures no border at the bottom */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for navigation buttons */
+nav ul li a:hover {
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero section styling */
+.hero-content-box {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.hero-content-box h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.hero-content-box p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+/* Button styles */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.cta-button {
+  padding: 12px 24px;
+  border: none;
+  background-color: #ff6600;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button.secondary {
+  background-color: #555;
+}
+
+.cta-button:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button.secondary:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: Additional responsiveness */
+@media (max-width: 768px) {
+  .hero-content-box h1 {
+    font-size: 36px;
+  }
+
+  .hero-content-box p {
+    font-size: 16px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,85 @@
+/* src/Services.css */
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .services-container {
+    padding: 40px;
+    background: linear-gradient(to bottom, #000, #434343);  /* Black gradient */
+    color: white;
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  header {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+  }
+  
+  /* Grid layout for service cards */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards in the first row */
+    gap: 20px;
+  }
+  
+  .service-item {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Adding a shadow */
+  }
+  
+  .service-item h2 {
+    color: white;
+  }
+  
+  .service-item ul {
+    list-style-type: none;
+    padding: 0;
+    color: #ddd; /* Lighter text */
+  }
+  
+  .service-item ul li {
+    margin-bottom: 10px;
+  }
+  
+  .service-item p {
+    font-size: 16px;
+    color: #ddd;
+  }
+  
+  /* Set the last two cards (Pressure Washing and Trash Can & Chair Cleaning) in the second row */
+  .services-grid > :nth-child(4),
+  .services-grid > :nth-child(5) {
+    grid-column: span 1;  /* Make these two take up 1 column each (50% width) */
+  }
+  
+  .contact-info {
+    margin-top: 40px;
+    text-align: center;
+    color: white;
+  }
+  
+  .contact-info p {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
