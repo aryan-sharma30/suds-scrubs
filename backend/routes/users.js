@@ -16,6 +16,7 @@ router.post('/register', async (req, res) => {
 
     db.query(query, values, (err) => {
       if (err) {
+        console.log(err)
         return res.status(500).json({ error: 'Error creating user account.' });
       }
       res.status(201).json({ message: 'Account created successfully! Please login to proceed.' });
