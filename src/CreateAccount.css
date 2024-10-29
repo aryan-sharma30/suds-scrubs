@@ -1,0 +1,78 @@
+/* CreateAccount.css */
+
+.create-account-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #000, #333); /* Black gradient background */
+    color: white; /* White text */
+  }
+  
+  .create-account-container {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    padding: 40px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+  }
+  
+  .radio-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  
+  .radio-group label {
+    font-size: 14px;
+  }
+  
+  .create-account-button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .create-account-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .create-account-button:hover:enabled {
+    background-color: white;
+    color: black;
+  }
+  
+  

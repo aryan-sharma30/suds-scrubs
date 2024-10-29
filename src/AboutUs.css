@@ -1,0 +1,43 @@
+/* src/AboutUs.css */
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .about-us-container {
+    padding: 40px;
+    background: linear-gradient(to bottom, #000, #434343);  /* Black gradient */
+    color: white;
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  header {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .about-card {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Adding a shadow */
+    max-width: 600px;
+    margin: 0 auto; /* Center the card */
+  }
+  
+  .about-card p {
+    font-size: 18px;
+    color: white;
+  }
+  
