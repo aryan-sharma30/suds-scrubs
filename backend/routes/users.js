@@ -14,25 +14,21 @@ router.post('/register', async (req, res) => {
                    VALUES (?, ?, ?, ?, ?, ?)`;
     const values = [firstName, lastName, phone, email, hashedPassword, isVeteranOrTeacher === 'yes'];
 
-    db.query(query, values, (err) => {
-      if (err) {
-        console.log(err)
-        return res.status(500).json({ error: 'Error creating user account.' });
-      }
-      res.status(201).json({ message: 'Account created successfully! Please login to proceed.' });
-    });
+    await db.query(query, values);
+    res.status(201).json({ message: 'Account created successfully! Please login to proceed.' });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('Error creating user account:', error.message);
+    res.status(500).json({ error: 'Error creating user account.' });
   }
 });
 
 // Login user
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const { phone, password } = req.body;
 
-  const query = `SELECT * FROM users WHERE phone = ?`;
-  db.query(query, [phone], async (err, results) => {
-    if (err) return res.status(500).json({ error: 'Database error' });
+  try {
+    const query =  `SELECT * FROM users WHERE phone = ?`;
+    const [results] = await db.query(query, [phone]);
 
     if (results.length === 0) {
       return res.status(401).json({ error: 'Invalid number or password' });
@@ -46,7 +42,10 @@ router.post('/login', (req, res) => {
     }
 
     res.status(200).json({ message: 'Login successful!' });
-  });
+  } catch (error) {
+    console.error('Database error:', error.message);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
 module.exports = router;
