@@ -26,6 +26,7 @@ const HomePage = () => {
           <ul>
             <li><Link to="/services">Services</Link></li> 
             <li><a href="/login">Schedule a Wash</a></li>
+            <li><Link to="/testimony">Testimonials</Link></li>
             <li><Link to="/login">Login / Sign Up</Link></li>
             <li><Link to="/about">About Us</Link></li>
           </ul>

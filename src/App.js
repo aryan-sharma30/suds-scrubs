@@ -7,6 +7,7 @@ import LoginPage from './LoginPage';
 import CreateAccount from './CreateAccount';
 import ScheduleWash from './ScheduleWash';
 import Confirmation from './Confirmation';
+import Testimony from './Testimony';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<CreateAccount/>}/>
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/schedule-wash" element={<ScheduleWash />} />
+        <Route path="/testimony" element={<Testimony />} />
       </Routes>
     </Router>
   );
