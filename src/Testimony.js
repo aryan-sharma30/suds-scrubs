@@ -21,7 +21,7 @@ const Testimony = () => {
             <div class="container">
                 <div class="wrapper">
                 <div class="banner-image-2"> </div>
-                <p>Great job boys! My car is brand spanking you. Tomorrow I’m putting them to work again on the deck. They did such a nice job today and such a pleasure to work with, I love how they are both so eager to learn the art of business ownership and entrepreneurship, trying to figure out how to expand their business! - Yogesh</p>
+                <p>Great job boys! My car is sparkling new. Tomorrow I’m putting them to work again on the deck. They did such a nice job today and such a pleasure to work with, I love how they are both so eager to learn the art of business ownership and entrepreneurship, trying to figure out how to expand their business! - Yogesh</p>
                 </div>
             </div>
             <div class="container">
