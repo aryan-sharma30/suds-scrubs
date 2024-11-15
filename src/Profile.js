@@ -61,6 +61,11 @@ const Profile = () => {
     }
 };
 
+
+const onLogOutClick = () => {
+  localStorage.clear();
+}
+
   return (
     <div className="home-page">
       {/* Header */}
@@ -71,7 +76,7 @@ const Profile = () => {
             <li><a href="/schedule-wash">Schedule a Wash</a></li>
             <li><Link to="/wash-history">Wash History</Link></li>
             <li><Link to="/feedback">Ratings/Feedback</Link></li>
-            <li><Link to="/logout">Logout</Link></li>
+            <li><Link to="/" onClick={onLogOutClick}>Logout</Link></li>
           </ul>
         </nav>
       </header>
