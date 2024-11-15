@@ -5,6 +5,8 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const { google } = require('googleapis');
+const authorize = require('../gmailAuth');
 require('dotenv').config();
 
 // Register user
@@ -58,53 +60,50 @@ function generateOTP() {
 
 function sendEmail(recipientEmail, otp) {
   return new Promise((resolve, reject) => {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.MY_EMAIL,
-        pass: process.env.MY_PASSWORD,
-      },
-    });
+    authorize((auth) => {
+      const gmail = google.gmail({ version: 'v1', auth });
 
-    const mailOptions = {
-      from: process.env.MY_EMAIL,
-      to: recipientEmail,
-      subject: "Surds & Scrubs - Password Recovery OTP",
-      html: `<!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset='UTF-8">
-        <title>Surds & Scrubs - OTP Email</title>
+      const emailContent = `
+From: "Surds & Scrubs" <${process.env.MY_EMAIL}>
+To: ${recipientEmail}
+Subject: Surds & Scrubs - Password Recovery OTP
+Content-Type: text/html; charset=UTF-8
 
-      </head>
-      <body>
-        <!-- partial:index.partial.html -->
-          <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
-            <div style="margin:50px auto;width:70%;padding:20px 0">
-              <div style="border-bottom:1px solid #eee">
-                <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Surds & Scrubs</a>
-              </div>
-              <p style="font-size:1.1em">Hi,</p>
-              <p>Thank you for choosing Surds & Scrubts. Use the following OTP to complete your Password Recovery Procedure. OTP is valid for 5 minutes</p>
-              <h2 style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">${otp}</h2>
-              <p style="font-size:0.9em;">Regards,<br />Surds & Scrubs</p>
-              <hr style="border:none;border-top:1px solid #eee" />
-              <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
-                <p>Surds & Scrubs</p>
-                <p>Pennsylvania</p>
-              </div>
-            </div>
-          </div>
-          <!-- partial -->
-      </body>`,
-    };
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Surds & Scrubs - OTP Email</title>
+</head>
+<body>
+  <p>Hi,</p>
+  <p>Use the following OTP to complete your Password Recovery Procedure. OTP is valid for 5 minutes.</p>
+  <h2>${otp}</h2>
+  <p>Regards,<br />Surds & Scrubs</p>
+</body>
+</html>`;
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Error sending email:", error);
-        return reject("Failed to send email.");
-      }
-      resolve("Email sent successfully.");
+      const encodedEmail = Buffer.from(emailContent)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
+      gmail.users.messages.send(
+        {
+          userId: 'me',
+          requestBody: {
+            raw: encodedEmail,
+          },
+        },
+        (err, res) => {
+          if (err) {
+            console.error('Error sending email:', err);
+            return reject('Failed to send email.');
+          }
+          resolve('Email sent successfully.');
+        }
+      );
     });
   });
 }
@@ -232,14 +231,14 @@ router.delete('/scheduled-wash/:orderId', async (req, res) => {
 
 router.put('/scheduled-wash/:orderId', async (req, res) => {
   const { orderId } = req.params;
-  const { address, carCompanyAndName, packageType, slot } = req.body;
+  const { address, carCompany, seatMat, carType, packageType, slot } = req.body; // Add all expected fields from the query
 
   try {
       const query = `
           UPDATE washorders 
-          SET address = ?, carCompanyAndName = ?, packageType = ?, slot = ? 
+          SET address = ?, carCompanyAndName = ?, seatMat = ?, carType = ?, packageType = ?, slot = ? 
           WHERE order_id = ?`;
-      const values = [address, carCompanyAndName, packageType, slot, orderId];
+      const values = [address, carCompany, seatMat, carType, packageType, slot, orderId]; // Ensure all placeholders have corresponding values
 
       await db.query(query, values);
       res.status(200).json({ message: 'Wash updated successfully!' });
@@ -248,6 +247,7 @@ router.put('/scheduled-wash/:orderId', async (req, res) => {
       res.status(500).json({ error: 'Error updating wash.' });
   }
 });
+
 
 
 module.exports = router;

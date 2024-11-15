@@ -13,6 +13,7 @@ import ChangePassword from './ChangePassword';
 import Profile from './Profile';
 import Feedback from './Feedback';
 import WashHistory from './WashHistory';
+import ModifyWash from './ModifyWash';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/home" element={<Profile />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/wash-history" element={<WashHistory />} />
+        <Route path="/modify-wash/:orderId" element={<ModifyWash />} />
       </Routes>
     </Router>
   );

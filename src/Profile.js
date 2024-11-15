@@ -65,6 +65,9 @@ const Profile = () => {
 const onLogOutClick = () => {
   localStorage.clear();
 }
+const handleModifyWash = (orderId) => {
+  navigate(`/modify-wash/${orderId}`);
+};
 
   return (
     <div className="home-page">
@@ -110,7 +113,7 @@ const onLogOutClick = () => {
                   carCompanyAndName={wash.carCompanyAndName} 
                   address={wash.address} 
                   onDelete={handleDeleteWash}
-                  //onModify={handleModifyWash}
+                  onModify={handleModifyWash}
                 />
               ))}
             </div>
