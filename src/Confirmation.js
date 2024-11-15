@@ -12,7 +12,7 @@ const ConfirmationPage = () => {
         Thank you for availing our services! Our team will reach out to you with further information regarding the confirmation of your schedule.
       </p>
       <button onClick={() => navigate('/home')}>Home Page</button>
-      <button onClick={() => navigate('/')}>Log Out</button> {/* Redirect to the homepage */}
+      {/* <button onClick={() => navigate('/')}>Log Out</button> Redirect to the homepage */}
     </div>
   );
 };
