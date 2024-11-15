@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './HomePage.css';
 import Card from './Card'; 
 import { Link, useNavigate } from 'react-router-dom';
-import blackBg from './images/CoolBlackBackground.jpg'
+import blackBg from './images/CoolBlackBackground.png'
 
 const Profile = () => {
   const navigate = useNavigate();
