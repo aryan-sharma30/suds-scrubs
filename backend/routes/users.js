@@ -156,7 +156,7 @@ router.get('/scheduled-washes/:userId', async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const query = `SELECT order_id, packageType, carCompanyAndName, address, slot FROM orders WHERE user_id = ? AND slot > NOW()`;
+    const query = `SELECT order_id, packageType, carCompanyAndName, address, slot FROM washorders WHERE user_id = ? AND slot > NOW()`;
     const [washes] = await db.query(query, [userId]);
 
     res.status(200).json({ washes });
@@ -171,7 +171,7 @@ router.get('/wash-history/:userId', async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const query = `SELECT order_id, packageType, carCompanyAndName, address, slot FROM orders WHERE user_id = ? AND slot < NOW()`;
+    const query = `SELECT order_id, packageType, carCompanyAndName, address, slot FROM washorders WHERE user_id = ? AND slot < NOW()`;
     const [washes] = await db.query(query, [userId]);
 
     res.status(200).json({ washes });
@@ -186,7 +186,7 @@ router.post('/schedule-wash', async (req, res) => {
   const { userId, address, carCompany, seatMat, carType, packageType, slot } = req.body;
 
   try {
-    const query = `INSERT INTO orders (user_id, address, carCompanyAndName, seatMat, carType, packageType, slot)
+    const query = `INSERT INTO washorders (user_id, address, carCompanyAndName, seatMat, carType, packageType, slot)
                    VALUES (?, ?, ?, ?, ?, ?, ?)`;
     const values = [userId, address, carCompany, seatMat, carType, packageType, slot];
 
@@ -221,7 +221,7 @@ router.delete('/scheduled-wash/:orderId', async (req, res) => {
   const { orderId } = req.params;
 
   try {
-      const query = `DELETE FROM orders WHERE order_id = ?`;
+      const query = `DELETE FROM washorders WHERE order_id = ?`;
       await db.query(query, [orderId]);
       res.status(200).json({ message: 'Wash deleted successfully!' });
   } catch (error) {
@@ -236,7 +236,7 @@ router.put('/scheduled-wash/:orderId', async (req, res) => {
 
   try {
       const query = `
-          UPDATE orders 
+          UPDATE washorders 
           SET address = ?, carCompanyAndName = ?, packageType = ?, slot = ? 
           WHERE order_id = ?`;
       const values = [address, carCompanyAndName, packageType, slot, orderId];
