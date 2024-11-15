@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './ScheduleWash.css';
 
 const ScheduleWash = () => {
   const location = useLocation();
-  const userId = location.state?.userId; // Access the userId from the location state
+  const [userId, setUserId] = useState(null);
   const [carDetails, setCarDetails] = useState({
     address: '',
     carCompany: '',
@@ -20,6 +21,10 @@ const ScheduleWash = () => {
 
   // Set min and max date when component mounts
   useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
     const today = new Date();
     const oneMonthLater = new Date(today);
     oneMonthLater.setMonth(today.getMonth() + 1);
@@ -33,14 +38,49 @@ const ScheduleWash = () => {
     setCarDetails({ ...carDetails, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+
     
     // Simply navigate to the confirmation page without any API call
-    navigate('/confirmation');
+    //navigate('/confirmation');
+
+    try {
+      const response = await fetch('https://suds-scrubs-production.up.railway.app/api/users/schedule-wash', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, ...carDetails }),
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        navigate('/confirmation'); // Redirect to the confirmation page upon success
+      } else {
+        console.error('Failed to schedule wash');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    
   };
 
   return (
+    <div>
+      <header className="header">
+        <div className="logo">Suds & Scrubs</div>
+        <nav>
+          <ul> 
+          <li><a href="/home">Home</a></li>
+            <li><a href="/schedule-wash">Schedule a Wash</a></li>
+            <li><Link to="/wash-history">Wash History</Link></li>
+            <li><Link to="/feedback">Ratings/Feedback</Link></li>
+            <li><Link to="/logout">Logout</Link></li>
+          </ul>
+        </nav>
+      </header>
     <div className="schedule-wash">
       <div className="form-container">
         <h2>Schedule Your Wash</h2>
@@ -139,6 +179,7 @@ const ScheduleWash = () => {
           <button type="submit" className="schedule-button">Schedule Wash</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,0 +1,105 @@
+/* Wrapper grid and card styles */
+.wrapper {
+  display: grid;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  max-width: 50rem;
+  min-height: 8rem;
+  background-color: white;
+  box-shadow: 0 2px 20px var(--clr-gray300, #ddd); /* Fallback for gray300 */
+  border-radius: var(--radius, 8px); /* Fallback radius */
+  transition: transform 200ms ease-in;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Icon section */
+.card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-right: 1px solid #333; /* Light black right border */
+}
+
+.calendar-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Content section */
+.card__content {
+  flex-grow: 1;
+  padding: 1rem;
+  color: black; /* Ensure black text */
+}
+
+.card__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black; /* Explicit color */
+}
+
+.card__description {
+  font-size: 0.9rem;
+  color: black; /* Explicit color */
+}
+
+/* Actions section */
+.card__actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+/* Buttons with hover effects */
+.modify-btn,
+.delete-btn {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: var(--radius, 5px);
+  cursor: pointer;
+  transition: background-color 200ms ease-in, color 200ms ease-in;
+}
+
+.modify-btn {
+  background-color: transparent;
+  color: #039d69; /* Green */
+  border: 2px solid #039d69;
+}
+
+.modify-btn:hover {
+  background-color: #039d69;
+  color: white;
+}
+
+.delete-btn {
+  background-color: transparent;
+  color: #d50000; /* Red */
+  border: 2px solid #d50000;
+}
+
+.delete-btn:hover {
+  background-color: #d50000;
+  color: white;
+}
+
+.card__address {
+  display: none;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.card:hover .card__address {
+  display: block;
+}

@@ -53,7 +53,7 @@ const HomePage = () => {
           <p>Your car deserves the best wash</p>
           <div className="cta-buttons">
             <button className="cta-button" onClick={handleScheduleWashClick}>Schedule a Wash</button>
-            <button className="cta-button secondary">Contact Us</button>
+            {/* <button className="cta-button secondary">Contact Us</button> */}
           </div>
         </div>
       </section>
