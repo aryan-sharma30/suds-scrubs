@@ -61,3 +61,21 @@ h2 {
 .create-account {
   margin-top: 15px;
 }
+
+.forgot-password-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.forgot-password {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
