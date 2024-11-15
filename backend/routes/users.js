@@ -5,8 +5,8 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const { google } = require('googleapis');
-const authorize = require('../gmailAuth');
+// const { google } = require('googleapis');
+// const authorize = require('../gmailAuth');
 require('dotenv').config();
 
 // Register user
@@ -59,53 +59,54 @@ function generateOTP() {
 }
 
 function sendEmail(recipientEmail, otp) {
-  return new Promise((resolve, reject) => {
-    authorize((auth) => {
-      const gmail = google.gmail({ version: 'v1', auth });
+//   return new Promise((resolve, reject) => {
+//     authorize((auth) => {
+//       const gmail = google.gmail({ version: 'v1', auth });
 
-      const emailContent = `
-From: "Surds & Scrubs" <${process.env.MY_EMAIL}>
-To: ${recipientEmail}
-Subject: Surds & Scrubs - Password Recovery OTP
-Content-Type: text/html; charset=UTF-8
+//       const emailContent = `
+// From: "Surds & Scrubs" <${process.env.MY_EMAIL}>
+// To: ${recipientEmail}
+// Subject: Surds & Scrubs - Password Recovery OTP
+// Content-Type: text/html; charset=UTF-8
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Surds & Scrubs - OTP Email</title>
-</head>
-<body>
-  <p>Hi,</p>
-  <p>Use the following OTP to complete your Password Recovery Procedure. OTP is valid for 5 minutes.</p>
-  <h2>${otp}</h2>
-  <p>Regards,<br />Surds & Scrubs</p>
-</body>
-</html>`;
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8">
+//   <title>Surds & Scrubs - OTP Email</title>
+// </head>
+// <body>
+//   <p>Hi,</p>
+//   <p>Use the following OTP to complete your Password Recovery Procedure. OTP is valid for 5 minutes.</p>
+//   <h2>${otp}</h2>
+//   <p>Regards,<br />Surds & Scrubs</p>
+// </body>
+// </html>`;
 
-      const encodedEmail = Buffer.from(emailContent)
-        .toString('base64')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
+//       const encodedEmail = Buffer.from(emailContent)
+//         .toString('base64')
+//         .replace(/\+/g, '-')
+//         .replace(/\//g, '_')
+//         .replace(/=+$/, '');
 
-      gmail.users.messages.send(
-        {
-          userId: 'me',
-          requestBody: {
-            raw: encodedEmail,
-          },
-        },
-        (err, res) => {
-          if (err) {
-            console.error('Error sending email:', err);
-            return reject('Failed to send email.');
-          }
-          resolve('Email sent successfully.');
-        }
-      );
-    });
-  });
+//       gmail.users.messages.send(
+//         {
+//           userId: 'me',
+//           requestBody: {
+//             raw: encodedEmail,
+//           },
+//         },
+//         (err, res) => {
+//           if (err) {
+//             console.error('Error sending email:', err);
+//             return reject('Failed to send email.');
+//           }
+//           resolve('Email sent successfully.');
+//         }
+//       );
+//     });
+//   });
+return;
 }
 
 router.post('/forgot-password', async (req, res) => {
