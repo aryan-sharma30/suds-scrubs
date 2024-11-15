@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './HomePage.css';
 import { Link, useNavigate } from 'react-router-dom';
-import blackBg from './images/CoolBlackBackground.jpg';
+import blackBg from './images/CoolBlackBackground.png';
 
 const Feedback = () => {
   const [selectedRating, setSelectedRating] = useState(''); // Initial rating
