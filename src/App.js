@@ -14,6 +14,7 @@ import Profile from './Profile';
 import Feedback from './Feedback';
 import WashHistory from './WashHistory';
 import ModifyWash from './ModifyWash';
+import Checkout from './Checkout';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/wash-history" element={<WashHistory />} />
         <Route path="/modify-wash/:orderId" element={<ModifyWash />} />
+        <Route path='/checkout' element ={<Checkout/>} />
       </Routes>
     </Router>
   );

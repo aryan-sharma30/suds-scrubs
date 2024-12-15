@@ -4,7 +4,7 @@ import './Confirmation.css'; // Import the CSS file
 
 const ConfirmationPage = () => {
   const navigate = useNavigate(); // Use useNavigate for redirection
-
+          
   return (
     <div className="confirmation-container">
       <h2>Thank You!</h2>

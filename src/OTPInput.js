@@ -16,7 +16,7 @@ const OTPInput = ({ otp, onOTPVerified }) => {
 //   const resendOTP = () => {
 //     if (disable) return;
 //     axios
-//       .post("http://localhost:5000/send_recovery_email", {
+//       .post("https://suds-scrubs-production.up.railway.app/send_recovery_email", {
 //         OTP: otp,
 //         recipient_email: email,
 //       })

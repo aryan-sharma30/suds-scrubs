@@ -32,6 +32,7 @@ const WashHistory = () => {
 
   const fetchWashHistory = async (userId) => {
     try {
+      //const response = await fetch(`https://suds-scrubs-production.up.railway.app/api/users/wash-history/${userId}`);
       const response = await fetch(`https://suds-scrubs-production.up.railway.app/api/users/wash-history/${userId}`);
       const data = await response.json();
       setWashes(data.washes || []);

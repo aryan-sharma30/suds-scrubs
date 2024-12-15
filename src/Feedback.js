@@ -33,7 +33,7 @@ const Feedback = () => {
     const ratingValue = selectedRating === 'Happy' ? 3 : selectedRating === 'Neutral' ? 2 : 1;
 
     try {
-      const response = await fetch('https://suds-scrubs-production.up.railway.app/api/users/submit-feedback', {
+      const response = await fetch('https://localhost:5000/api/users/submit-feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, rating: ratingValue, comments }),

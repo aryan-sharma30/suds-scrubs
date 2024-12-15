@@ -1,97 +1,111 @@
-/* src/ScheduleWash.css */
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-/* Remove global styles that affect the body */
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: black; /* Black background */
+  color: white;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.header nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.header nav ul li {
+  display: inline;
+}
+
+.header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* ScheduleWash Component */
 .schedule-wash {
-  margin: 0; /* Remove default margin */
-  font-family: 'Montserrat', sans-serif; /* Set font family */
-  background: linear-gradient(to bottom, #000, #434343); /* Black gradient background */
-  color: white; /* Text color for the component */
-  min-height: 100vh; /* Full height for the component */
-  display: flex; /* Flexbox to center content */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  padding: 20px;
+  background: linear-gradient(180deg, #000, #434343);
 }
 
-.schedule-wash .form-container {
-  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-  border-radius: 12px;
-  padding: 40px;
-  width: 450px; /* Fixed width */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Soft shadow */
-  animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+/* Make sure form-container has enough space below the header */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 120px; /* Space for the fixed header (adjust this value if necessary) */
 }
 
-.schedule-wash h2 {
+.form-container h2 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 28px;
-  font-weight: 600;
-}
-
-.schedule-wash .input-group {
   margin-bottom: 20px;
 }
 
-.schedule-wash .input-group label {
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-weight: bold;
   display: block;
-  margin-bottom: 8px;
-  font-size: 16px;
-  color: #ddd; /* Light grey color for labels */
+  margin-bottom: 5px;
 }
 
-.schedule-wash .input-group input,
-.schedule-wash .input-group select,
-.schedule-wash .input-group textarea {
-  width: 100%; /* Full width for inputs */
-  padding: 12px; /* Padding for inputs */
-  border: none; /* Remove border */
-  border-radius: 8px; /* Rounded corners */
-  background-color: rgba(255, 255, 255, 0.2); /* Light translucent background */
-  color: white; /* Text color for inputs */
-  font-size: 16px; /* Font size for inputs */
-  outline: none; /* Remove outline */
-  appearance: none; /* Hides default dropdown arrows */
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.schedule-wash .input-group select option {
-  color: black; /* Makes the dropdown options readable */
+.input-group textarea {
+  resize: vertical;
 }
 
-.schedule-wash .input-group input::placeholder,
-.schedule-wash .input-group textarea::placeholder {
-  color: rgba(255, 255, 255, 0.6); /* Light placeholder color */
+.schedule-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.schedule-wash .input-group input:focus,
-.schedule-wash .input-group select:focus,
-.schedule-wash .input-group textarea:focus {
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* Focus effect */
-}
-
-.schedule-wash .schedule-button {
-  width: 100%; /* Full width for button */
-  padding: 15px; /* Padding for button */
-  border: none; /* Remove border */
-  border-radius: 8px; /* Rounded corners */
-  background-color: #1db954; /* Green background */
-  color: white; /* Text color for button */
-  font-size: 18px; /* Font size for button */
-  font-weight: bold; /* Bold text for button */
-  cursor: pointer; /* Pointer cursor for button */
-  transition: background-color 0.3s ease-in-out; /* Transition for hover effect */
-}
-
-.schedule-wash .schedule-button:hover {
-  background-color: #17a64a; /* Darker green on hover */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; /* Start transparent */
-    transform: translateY(-10px); /* Slide up */
-  }
-  to {
-    opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Normal position */
-  }
+.schedule-button:hover {
+  background-color: #0056b3;
 }

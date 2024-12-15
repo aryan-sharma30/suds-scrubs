@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
 });
 
 function generateOTP() {
-  return Math.floor(1000 + Math.random() * 9000).toString(); // 6-digit OTP
+  return Math.floor(1000 + Math.random() * 9000).toString(); // 4-digit OTP
 }
 
 function sendEmail(recipientEmail, otp) {
@@ -65,11 +65,13 @@ router.post('/forgot-password', async (req, res) => {
 
   try {
     // Check if email exists in the database
+    console.log("Reached /forgot-password now");
     const [users] = await db.query(`SELECT * FROM users WHERE email = ?`, [email]);
     if (users.length === 0) {
       return res.status(404).json({ error: 'Email not found.' });
     }
 
+    console.log("Generating OTP");
     // Generate OTP and save it temporarily in the database
     const otp = generateOTP();
     await db.query(`UPDATE users SET otp = ?, otpExpiry = DATE_ADD(NOW(), INTERVAL 5 MINUTE) WHERE email = ?`, [otp, email]);
